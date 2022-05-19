@@ -20,32 +20,30 @@ buzdebug_t Buz = {0, 0, 0, 0};
   * @brief Turn on buzzer by PWM signal
   * @note No need init
   * @param 0%-100%
-  * @retval no
+  * @retval No
   */
-void Buzz_PWM_Percent(uint8_t perc)
+void Buzz_PWM_Percent(uint8_t percent)
 {
 	/* Check range */
-	if(perc > 100){
-		perc = 100;
+	if(percent > 100){
+		percent = 100;
 	}
 #if(USE_PASSIVE_BUZZER)
 
 	uint16_t tim_arr = __HAL_TIM_GET_AUTORELOAD(TIM_BUZZER_HANDLE);
 
-	uint16_t tim_ccr_new = (perc*tim_arr/100) + 1;
+	uint16_t tim_ccr_new = (percent*tim_arr*0.01) + 1;
 
 	__HAL_TIM_SET_COMPARE(TIM_BUZZER_HANDLE, TIM_CHANNEL_1, tim_ccr_new);
 #endif
 
 }
 
-
-
 /**
   * @brief Turn on buzzer
   * @note No need init
-  * @param no
-  * @retval no
+  * @param No
+  * @retval No
   */
 void BUZZER_On(void)
 {
@@ -56,18 +54,22 @@ void BUZZER_On(void)
 
 #else
 
+#if(USE_ACTIVE_HIGH)
 	/* For buzzer with generator */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
-
-	#endif
+#else
+	/* For buzzer with generator */
+	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
+#endif
+#endif
 
 }
 
 /**
   * @brief Turn off buzzer
   * @note No need init
-  * @param no
-  * @retval no
+  * @param No
+  * @retval No
   */
 void BUZZER_Off(void)
 {
@@ -77,18 +79,21 @@ void BUZZER_Off(void)
 
 #else
 
+#if(USE_ACTIVE_HIGH)
 	/* For buzzer with generator */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
-
-	#endif
-
+#else
+	/* For buzzer with generator */
+	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
+#endif
+#endif
 }
 
 /**
   * @brief Toggle buzzer state
   * @note No need init
-  * @param no
-  * @retval no
+  * @param No
+  * @retval No
   */
 void BuzzerToggle(void)
 {
@@ -124,7 +129,7 @@ void BuzzerToggle(void)
   * @brief Disable buzzer
   * @note No need init
   * @param time between ticks in ms, ticks quantity
-  * @retval no
+  * @retval No
   */
 void BUZZER_Go(buztime_t period, buztick_t ticks)
 {
@@ -139,8 +144,8 @@ void BUZZER_Go(buztime_t period, buztick_t ticks)
 /**
   * @brief Disable buzzer
   * @note Insert func.in the 1kHz interrupt handler (e.g. SysTick)
-  * @param no
-  * @retval no
+  * @param No
+  * @retval No
   */
 void BUZZER_Handler(void)
 {
@@ -153,13 +158,13 @@ void BUZZER_Handler(void)
 			if(Buz.Help)
 			{
 				BUZZER_On();
-				Buz.Tout = Buz.ToutSave;
 			}
 			else
 			{
 				BUZZER_Off();
-				Buz.Tout = Buz.ToutSave;
 			}
+
+			Buz.Tout = Buz.ToutSave;
 
 			/* Toggle */
 			Buz.Help = ~Buz.Help;

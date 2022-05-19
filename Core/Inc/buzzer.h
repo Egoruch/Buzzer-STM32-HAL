@@ -8,9 +8,13 @@
 /* USER CODE END Includes */
 
 /* Active buzzer for GPIO control
- * Passive buzzer need PWM */
-#define USE_PASSIVE_BUZZER 0 /* 0 - Active buzzer; 1 - Passive buzzer (uses timer) */
+ * Passive buzzer need hardware PWM */
 
+/*_______S E T T I N G S  H E R E ↓ _____________________*/
+
+#define USE_PASSIVE_BUZZER 0 /* 0 - Active buzzer; 1 - Passive buzzer (uses timer) */
+#define USE_ACTIVE_HIGH 1 /* 1 - BuzzerOn = HighOutput; 0 - BuzzerOn = LowOutput; */
+/*_______________________________________________________*/
 
 /* External BEGIN */
 #if(USE_PASSIVE_BUZZER)
