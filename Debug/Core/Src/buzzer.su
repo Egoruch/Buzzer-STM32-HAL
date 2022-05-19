@@ -1,0 +1,6 @@
+../Core/Src/buzzer.c:25:6:Buzz_PWM_Percent	16	static
+../Core/Src/buzzer.c:50:6:BUZZER_On	8	static
+../Core/Src/buzzer.c:72:6:BUZZER_Off	8	static
+../Core/Src/buzzer.c:93:6:BuzzerToggle	8	static
+../Core/Src/buzzer.c:129:6:BUZZER_Go	16	static
+../Core/Src/buzzer.c:145:6:BUZZER_Handler	8	static
