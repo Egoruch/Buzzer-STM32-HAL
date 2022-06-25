@@ -8,11 +8,10 @@ Simple library to generate pulses with predefined  time and period, that can be 
 ![Config pin as input and set gpio label](/Images/buzzer_connection_circuit.svg)
 # How to use?
  1. Add *buzzer.c* to **Src** and *buzzer.h* to **Inc**:
-<img src="/Images/lib_add.png" width="250">
- 2. Configure required pin as **GPIO_Output** (left click) and set **label** (right click): ***BUZZER***. 
   ![Add library files](/Images/lib_add.png)
- 4. Include *buzzer.h* in **main.c**:
+ 2. Configure required pin as **GPIO_Output** (left click) and set **label** (right click): ***BUZZER***. 
  ![Pin config](/Images/pin_buzzer.png)
+ 3. Include *buzzer.h* in **main.c**:
 ```
  /* USER CODE BEGIN Includes */
 #include "buzzer.h"
