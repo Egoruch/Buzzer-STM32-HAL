@@ -1,11 +1,12 @@
 
+
 # Buzzer-STM32-HAL
 ![Config pin as input and set gpio label](/Images/buzzer_library.svg)
 Simple library to generate pulses with predefined  time and period, that can be used for control piezoelectronic buzzer with oscillator circuit – active, or without – passive. It useful for debug purposes or notifications in your device.
 # Connection circuit
 ![Config pin as input and set gpio label](/Images/buzzer_connection_circuit.svg)
 # How to use?
- 1. Add *buzzer.c* to **Src** and *buzzer.h* to **Inc**
+ 1. Add *buzzer.c* to **Src** and *buzzer.h* to **Inc**:
 ![add .c and h. file](/Images/lib_add.png)
  2. Configure required pin as **GPIO_Output** (left click) and set **label** (right click): ***BUZZER***. 
 ![Config pin as input and set gpio label](/Images/pin_buzzer.png)
