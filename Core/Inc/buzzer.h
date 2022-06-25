@@ -1,8 +1,6 @@
 #ifndef INC_BUZZER_H_
 #define INC_BUZZER_H_
 
-#endif /* INC_BUZZER_H_ */
-
 /* USER CODE BEGIN Includes */
 #include "main.h"
 /* USER CODE END Includes */
@@ -102,3 +100,5 @@ void BUZZER_Off(void);
 void BUZZER_Go(buztime_t period, buztick_t ticks);
 void BUZZER_Handler(void);
 /* USER CODE END PFP */
+
+#endif /* INC_BUZZER_H_ */

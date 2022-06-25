@@ -55,10 +55,10 @@ void BUZZER_On(void)
 #else
 
 #if(USE_ACTIVE_HIGH)
-	/* For buzzer with generator */
+	/* For buzzer with generator,  High Level = BuzzerOn */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
 #else
-	/* For buzzer with generator */
+	/* For buzzer with generator,  Low Level = BuzzerOn */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
 #endif
 #endif
@@ -80,10 +80,10 @@ void BUZZER_Off(void)
 #else
 
 #if(USE_ACTIVE_HIGH)
-	/* For buzzer with generator */
+	/* For buzzer with generator,  Low Level = BuzzerOff */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
 #else
-	/* For buzzer with generator */
+	/* For buzzer with generator,  High Level = BuzzerOff */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
 #endif
 #endif

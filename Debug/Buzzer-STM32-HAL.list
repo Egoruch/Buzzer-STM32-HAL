@@ -363,13 +363,13 @@ void BUZZER_On(void)
 #else
 
 #if(USE_ACTIVE_HIGH)
-	/* For buzzer with generator */
+	/* For buzzer with generator,  High Level = BuzzerOn */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
  80004dc:	2201      	movs	r2, #1
  80004de:	f44f 5100 	mov.w	r1, #8192	; 0x2000
  80004e2:	4802      	ldr	r0, [pc, #8]	; (80004ec <BUZZER_On+0x14>)
  80004e4:	f000 fcb4 	bl	8000e50 <HAL_GPIO_WritePin>
-	/* For buzzer with generator */
+	/* For buzzer with generator,  Low Level = BuzzerOn */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
 #endif
 #endif
@@ -392,14 +392,14 @@ void BUZZER_Off(void)
 #else
 
 #if(USE_ACTIVE_HIGH)
-	/* For buzzer with generator */
+	/* For buzzer with generator,  Low Level = BuzzerOff */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
  80004f4:	2200      	movs	r2, #0
  80004f6:	f44f 5100 	mov.w	r1, #8192	; 0x2000
  80004fa:	4802      	ldr	r0, [pc, #8]	; (8000504 <BUZZER_Off+0x14>)
  80004fc:	f000 fca8 	bl	8000e50 <HAL_GPIO_WritePin>
 #else
-	/* For buzzer with generator */
+	/* For buzzer with generator,  High Level = BuzzerOff */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
 #endif
 #endif
