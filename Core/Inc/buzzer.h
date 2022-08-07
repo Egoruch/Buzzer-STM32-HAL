@@ -10,19 +10,20 @@
 
 /*_______S E T T I N G S  H E R E ↓ _____________________*/
 
-#define USE_PASSIVE_BUZZER 0 /* 0 - Active buzzer; 1 - Passive buzzer (uses timer) */
-#define USE_ACTIVE_HIGH 1 /* 1 - BuzzerOn = HighOutput; 0 - BuzzerOn = LowOutput; */
+#define BUZZER_PASSIVE 0 /* 0 - Active buzzer; 1 - Passive buzzer (uses timer) */
+#define BUZZER_ACTIVE_HIGH 1 /* 1 - BuzzerOn = HighOutput; 0 - BuzzerOn = LowOutput; */
 /*_______________________________________________________*/
 
 /* External BEGIN */
-#if(USE_PASSIVE_BUZZER)
+#if(BUZZER_PASSIVE)
 extern TIM_HandleTypeDef htim11;
 #endif
 /* External END  */
 
 /* Defines BEGIN */
-#if(USE_PASSIVE_BUZZER)
-#define TIM_BUZZER_HANDLE &htim11
+#if(BUZZER_PASSIVE)
+#define TIM_BUZZER_HANDLER &htim11
+#define TIM_BUZZER_CHANNEL TIM_CHANNEL_1
 #endif
 /* Defines END */
 
@@ -95,6 +96,7 @@ typedef enum BuzzerTicks
 
 
 /* USER CODE BEGIN PFP */
+void BUZZER_Init(void);
 void BUZZER_On(void);
 void BUZZER_Off(void);
 void BUZZER_Go(buztime_t period, buztick_t ticks);

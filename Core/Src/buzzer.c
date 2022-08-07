@@ -17,24 +17,36 @@ buzdebug_t Buz = {0, 0, 0, 0};
 /* USER CODE END PV */
 
 /**
+  * @brief Initialize timer with PWM-output
+  * @note The timer handler and channel should be defined in .h file
+  * @retval No
+  */
+void BUZZER_Init(void)
+{
+#if(BUZZER_PASSIVE)
+	  HAL_TIM_PWM_Start(TIM_BUZZER_HANDLER, TIM_BUZZER_CHANNEL);
+#endif
+}
+
+/**
   * @brief Turn on buzzer by PWM signal
   * @note No need init
   * @param 0%-100%
   * @retval No
   */
-void Buzz_PWM_Percent(uint8_t percent)
+void BUZZER_PWM_SetPercent(uint8_t percent)
 {
 	/* Check range */
 	if(percent > 100){
 		percent = 100;
 	}
-#if(USE_PASSIVE_BUZZER)
+#if(BUZZER_PASSIVE)
 
-	uint16_t tim_arr = __HAL_TIM_GET_AUTORELOAD(TIM_BUZZER_HANDLE);
+	uint16_t tim_arr = __HAL_TIM_GET_AUTORELOAD(TIM_BUZZER_HANDLER);
 
 	uint16_t tim_ccr_new = (percent*tim_arr*0.01) + 1;
 
-	__HAL_TIM_SET_COMPARE(TIM_BUZZER_HANDLE, TIM_CHANNEL_1, tim_ccr_new);
+	__HAL_TIM_SET_COMPARE(TIM_BUZZER_HANDLER, TIM_BUZZER_CHANNEL, tim_ccr_new);
 #endif
 
 }
@@ -48,13 +60,13 @@ void Buzz_PWM_Percent(uint8_t percent)
 void BUZZER_On(void)
 {
 
-#if(USE_PASSIVE_BUZZER)
+#if(BUZZER_PASSIVE)
 
-	Buzz_PWM_Percent(50);
+	BUZZER_PWM_SetPercent(50);
 
 #else
 
-#if(USE_ACTIVE_HIGH)
+#if(BUZZER_ACTIVE_HIGH)
 	/* For buzzer with generator,  High Level = BuzzerOn */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
 #else
@@ -73,13 +85,13 @@ void BUZZER_On(void)
   */
 void BUZZER_Off(void)
 {
-#if(USE_PASSIVE_BUZZER)
+#if(BUZZER_PASSIVE)
 
-	Buzz_PWM_Percent(0);
+	BUZZER_PWM_SetPercent(0);
 
 #else
 
-#if(USE_ACTIVE_HIGH)
+#if(BUZZER_ACTIVE_HIGH)
 	/* For buzzer with generator,  Low Level = BuzzerOff */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
 #else
@@ -98,16 +110,16 @@ void BUZZER_Off(void)
 void BuzzerToggle(void)
 {
 
-#if(USE_PASSIVE_BUZZER)
+#if(BUZZER_PASSIVE)
 
 	static uint8_t toggle = 0;
 
 	if(toggle)
 	{
-		Buzz_PWM_Percent(50);
+		BUZZER_PWM_SetPercent(50);
 	}else
 	{
-		Buzz_PWM_Percent(0);
+		BUZZER_PWM_SetPercent(0);
 	}
 
 	toggle = ~toggle;

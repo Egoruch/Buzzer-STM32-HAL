@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00003c97  00000000  00000000  0002003c  2**0
+ 12 .debug_info   00003cad  00000000  00000000  0002003c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001002  00000000  00000000  00023cd3  2**0
+ 13 .debug_abbrev 0000101e  00000000  00000000  00023ce9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000440  00000000  00000000  00024cd8  2**3
+ 14 .debug_aranges 00000448  00000000  00000000  00024d08  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 000003a8  00000000  00000000  00025118  2**3
+ 15 .debug_ranges 000003b0  00000000  00000000  00025150  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001439f  00000000  00000000  000254c0  2**0
+ 16 .debug_macro  0001439f  00000000  00000000  00025500  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000502a  00000000  00000000  0003985f  2**0
+ 17 .debug_line   00005114  00000000  00000000  0003989f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0007e3eb  00000000  00000000  0003e889  2**0
+ 18 .debug_str    0007e3fb  00000000  00000000  0003e9b3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  000bcc74  2**0
+ 19 .comment      00000050  00000000  00000000  000bcdae  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000f00  00000000  00000000  000bccc4  2**2
+ 20 .debug_frame  00000f20  00000000  00000000  000bce00  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -362,7 +362,7 @@ void BUZZER_On(void)
 
 #else
 
-#if(USE_ACTIVE_HIGH)
+#if(BUZZER_ACTIVE_HIGH)
 	/* For buzzer with generator,  High Level = BuzzerOn */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
  80004dc:	2201      	movs	r2, #1
@@ -391,7 +391,7 @@ void BUZZER_Off(void)
 
 #else
 
-#if(USE_ACTIVE_HIGH)
+#if(BUZZER_ACTIVE_HIGH)
 	/* For buzzer with generator,  Low Level = BuzzerOff */
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
  80004f4:	2200      	movs	r2, #0
