@@ -58,8 +58,7 @@ void HAL_SYSTICK_Callback(void)
     /* USER CODE END WHILE */
 ```
 # Working demonstrating
-![Config pin as input and set gpio label](/Images/buzzer_blink.gif)
-
+<img src="/Images/buzzer_blink.gif" width="500">
 # TODO
  - [x]  Polarity choose
  - [ ] Initialize function with pin choose (based on Cube's label)
