@@ -44,7 +44,7 @@ void BUZZER_PWM_SetPercent(uint8_t percent)
 
 	uint16_t tim_arr = __HAL_TIM_GET_AUTORELOAD(TIM_BUZZER_HANDLER);
 
-	uint16_t tim_ccr_new = (percent*tim_arr*0.01) + 1;
+	uint16_t tim_ccr_new = (percent*tim_arr*0.01);
 
 	__HAL_TIM_SET_COMPARE(TIM_BUZZER_HANDLER, TIM_BUZZER_CHANNEL, tim_ccr_new);
 #endif
