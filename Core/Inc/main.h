@@ -49,6 +49,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -59,6 +61,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define BUZZER_Pin GPIO_PIN_13
 #define BUZZER_GPIO_Port GPIOC
+#define BUZZ_PWM_Pin GPIO_PIN_9
+#define BUZZ_PWM_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
