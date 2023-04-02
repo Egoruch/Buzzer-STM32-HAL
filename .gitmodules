@@ -1,0 +1,3 @@
+[submodule "Libraries/Buzzer-LIB"]
+	path = Libraries/Buzzer-LIB
+	url = https://github.com/Egoruch/Buzzer-LIB.git
